@@ -1,0 +1,64 @@
+---
+- hosts: localhost
+  connection: local
+  sudo: yes
+  tasks:
+    - pip: name="{{item}}" executable=pip
+      with_items:
+        - pip-tools
+        - numpy
+        - Pillow
+        - pync
+        - sphinx
+        - matplotlib
+    - homebrew: update_homebrew=yes
+    - homebrew_tap: tap="{{item}}"
+      with_items:
+        - homebrew/science
+        - caskroom/versions
+        - tora3kuma3/cask
+    - homebrew: name="{{item}}"
+      with_items:
+        - python
+        - opencv
+        - pyenv
+        - qt
+        - ssh-copy-id
+        - readline
+        - ansible
+        - tree
+        - cliclick
+        - nkf
+        - python3
+        - rename
+        - terminal-notifier
+        - git
+        - namebench
+        - brew-cask
+    - homebrew: name=cmake install_options=with-qt
+    - homebrew_cask: name="{{item}}"
+      with_items:
+        - cura
+        - v2c
+        - ftdi_usb_serial_driver
+        - java6
+        - printrun
+        - garmin-express
+        - bettertouchtool
+        - karabiner
+        - macs-fan-control
+        - google-chrome
+        - simple-comic
+        - sitesucker
+        - unity-web-player
+        - vlc
+        - mou
+        - gimp
+        - google-japanese-ime
+        - pycharm-ce
+        - sourcetree
+        - github
+        - cheatsheet
+        - cakebrew
+        - bathyscaphe
+
